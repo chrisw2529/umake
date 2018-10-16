@@ -1,0 +1,23 @@
+CC=something
+DT=date
+MR=
+AL=alot
+umake: umake.o arg_parse.o target.o
+	gcc -o umake umake.o arg_parse.o target.o
+	echo %%%%%regular umake done %%%%%%%%%%%%%%%%%
+umake.o: umake.c  arg_parse.h target.h
+	gcc -c umake.c
+	echo @@@umake.o done
+arg_parse.o: arg_parse.c arg_parse.h
+	gcc -c arg_parse.c
+	echo @@@arg_parse.o done
+target.o: target.c target.h
+	gcc -c target.c
+	echo @@@target.o done
+work:
+	${DT} > files
+	ls -a >> ${CC}
+	wc -l < files
+	wc -l < files >> line_count
+clean:
+	rm umake *.o

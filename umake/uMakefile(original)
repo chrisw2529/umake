@@ -1,0 +1,9 @@
+all: umake
+
+umake.o: umake.c
+	gcc -c umake.c arg_parse.c target.c
+
+umake: umake.o
+	gcc -o umake-new umake.o arg_parse.o target.o
+	mv -i umake-new umake
+
